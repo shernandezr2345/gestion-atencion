@@ -1,0 +1,76 @@
+{
+  "type": "record",
+  "name": "SolicitudPartnerRegistrada",
+  "namespace": "gestion_atencion.eventos",
+  "doc": "Integration Event que comunica la registración de una solicitud de partner. V2 agrega el estado del negocio de forma compatible con V1.",
+  "fields": [
+    {
+      "name": "metadata",
+      "type": {
+        "type": "record",
+        "name": "Metadata",
+        "doc": "Metadatos del evento para trazabilidad, identificación y versionado del contrato.",
+        "fields": [
+          {
+            "name": "event_id",
+            "type": "string",
+            "doc": "Identificador único del evento publicado."
+          },
+          {
+            "name": "event_time",
+            "type": "long",
+            "doc": "Momento del hecho de negocio que origina el evento, expresado en timestamp-millis desde la época Unix."
+          },
+          {
+            "name": "event_type",
+            "type": "string",
+            "default": "SolicitudPartnerRegistrada",
+            "doc": "Nombre del tipo de evento. En este contrato el valor es SolicitudPartnerRegistrada."
+          },
+          {
+            "name": "event_version",
+            "type": "string",
+            "default": "v2",
+            "doc": "Versión del contrato del evento. En este schema V2 corresponde a v2."
+          }
+        ]
+      }
+    },
+    {
+      "name": "data",
+      "type": {
+        "type": "record",
+        "name": "SolicitudPartnerRegistradaData",
+        "doc": "Payload del evento con los datos mínimos del negocio. V2 agrega estado de forma compatible sobre la estructura base de V1.",
+        "fields": [
+          {
+            "name": "solicitud_id",
+            "type": "string",
+            "doc": "Identificador de la solicitud registrada."
+          },
+          {
+            "name": "partner_id",
+            "type": "string",
+            "doc": "Identificador del partner asociado a la solicitud."
+          },
+          {
+            "name": "referencia_externa",
+            "type": "string",
+            "doc": "Referencia externa asociada a la solicitud."
+          },
+          {
+            "name": "tipo_servicio",
+            "type": "string",
+            "doc": "Tipo de servicio asociado a la solicitud."
+          },
+          {
+            "name": "estado",
+            "type": ["null", "string"],
+            "default": null,
+            "doc": "Estado de la solicitud en el productor. Se agrega en V2 como campo compatible con valor nulo por defecto."
+          }
+        ]
+      }
+    }
+  ]
+}
