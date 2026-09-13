@@ -7,6 +7,9 @@ name = "gestion-atencion"
 version = "0.1.0"
 description = "Microservicio de Gestión de Atención"
 requires-python = ">=3.11"
+dependencies = [
+    "psycopg[binary]>=3.2.1",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
